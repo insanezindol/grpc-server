@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example.grpcserver.grpc";
+option java_outer_classname = "MemberProto";
+
+service MemberService {
+  rpc CreateMember (MemberRequest) returns (MemberResponse);
+  rpc GetMember (GetMemberRequest) returns (MemberResponse);
+  rpc UpdateMember (MemberRequest) returns (MemberResponse);
+  rpc DeleteMember (DeleteMemberRequest) returns (DeleteMemberResponse);
+  rpc ListMembers (ListMembersRequest) returns (ListMembersResponse);
+}
+
+message MemberRequest {
+  int64 id = 1;
+  string name = 2;
+  int32 age = 3;
+}
+
+message MemberResponse {
+  int64 id = 1;
+  string name = 2;
+  int32 age = 3;
+  string message = 4;
+}
+
+message GetMemberRequest {
+  int64 id = 1;
+}
+
+message DeleteMemberRequest {
+  int64 id = 1;
+}
+
+message DeleteMemberResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message ListMembersRequest {
+}
+
+message ListMembersResponse {
+  repeated MemberResponse members = 1;
+}
